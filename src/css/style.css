@@ -85,10 +85,12 @@ body {
 
 /* MOBILE */
 @media (max-width: 575px) {
+  .header,
   .navigation,
   .content,
   .ads,
-  .sidebar {
+  .sidebar,
+  .footer {
     grid-column: 1 / 13;
   }
 }
