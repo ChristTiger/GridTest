@@ -17,8 +17,7 @@ body {
 /*   GRID PRINCIPAL   */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(4, auto);
+  grid-template: repeat(6, auto) / repeat(12, 1fr);
   gap: 1px;
 }
 
