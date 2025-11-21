@@ -1,4 +1,3 @@
-
 :root {
   --header: #34495e;
   --nav: #9b59b6;
@@ -14,17 +13,17 @@ body {
   color: white;
 }
 
-/*   GRID PRINCIPAL   */
+/*   GRID PRINCIPAL - DESKTOP PAR DÉFAUT   */
 .grid-container {
   display: grid;
-  grid-template: repeat(6, auto) / repeat(12, 1fr);
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
   gap: 1px;
 }
 
 /*   HEADER   */
 .header {
   grid-column: 1 / 13;
-  grid-row: 1 / 2;
   background: var(--header);
   text-align: center;
   padding: 50px 0;
@@ -33,14 +32,27 @@ body {
 /*   NAVIGATION   */
 .navigation {
   grid-column: 1 / 3;
-  grid-row: 2 /4;
+  grid-row: 2 / 4;
   background: var(--nav);
   padding: 20px;
 }
+
 .navigation .nav-item {
   background: rgba(255, 255, 255, 0.2);
   padding: 12px;
   margin: 10px 0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.navigation .nav-item:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.navigation .note {
+  font-size: 12px;
+  margin-top: 20px;
+  opacity: 0.8;
 }
 
 /*   CONTENU PRINCIPAL   */
@@ -52,8 +64,12 @@ body {
 }
 
 .content .red {
-  color: #ffffff;
+  color: #ffeb3b;
   font-weight: bold;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 4px;
+  display: inline-block;
 }
 
 /*   ADS   */
@@ -75,41 +91,122 @@ body {
 /*   FOOTER   */
 .footer {
   grid-column: 1 / 13;
+  grid-row: 4 / 5;
   background: var(--footer);
   text-align: center;
   padding: 30px;
 }
 
-/*   RESPONSIVE EXACTEMENT COMME L'IMAGE   */
+/*   TITRES COMMUNS   */
+h1, h2 {
+  margin-top: 0;
+  font-size: 2rem;
+}
 
-/* MOBILE */
-@media (max-width: 575px) {
-  .header,
-  .navigation,
-  .content,
-  .ads,
-  .sidebar,
+
+
+/*   ========================================
+    RESPONSIVE 
+    ======================================== */
+
+/* TABLETTE (576px à 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+  .grid-container {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  /* Header pleine largeur */
+  .header {
+    grid-column: 1 / 13;
+    grid-row: 1 / 2;
+  }
+
+  /* Navigation pleine largeur en dessous du header */
+  .navigation {
+    grid-column: 1 / 13;
+    grid-row: 2 / 3;
+  }
+
+  /* Contenu principal - 9 colonnes */
+  .content {
+    grid-column: 1 / 10;
+    grid-row: 3 / 4;
+  }
+
+  /* Sidebar à droite du contenu - 3 colonnes */
+  .sidebar {
+    grid-column: 10 / 13;
+    grid-row: 3 / 4;
+  }
+
+  /* Ads pleine largeur en dessous */
+  .ads {
+    grid-column: 1 / 13;
+    grid-row: 4 / 5;
+  }
+
+  /* Footer pleine largeur */
   .footer {
     grid-column: 1 / 13;
+    grid-row: 5 / 6;
   }
 }
 
-/* TABLETTE */
-@media (min-width: 576px) and (max-width: 767px) {
+/* MOBILE (moins de 576px) */
+@media (max-width: 575px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    gap: 1px;
+  }
+
+  /* Tous les éléments en pleine largeur, empilés verticalement */
+  .header {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    padding: 30px 20px;
+  }
+
   .navigation {
-    grid-column: 1 / 13;
+    grid-column: 1 / -1;
+    grid-row: auto;
+    padding: 15px;
   }
 
   .content {
-    grid-column: 1 / 10;
-  }
-
-  .sidebar {
-    grid-column: 10 / 13;
+    grid-column: 1 / -1;
+    grid-row: auto;
+    padding: 20px;
   }
 
   .ads {
-    grid-column: 1 / 13;
-  } 
-}
+    grid-column: 1 / -1;
+    grid-row: auto;
+    padding: 15px;
+  }
 
+  .sidebar {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    padding: 15px;
+  }
+
+  .footer {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    padding: 20px;
+  }
+
+  /* Réduction de la taille des textes sur mobile */
+  h1 {
+    font-size: 1.5em;
+  }
+
+  h2 {
+    font-size: 1.2em;
+  }
+
+  .navigation .nav-item {
+    padding: 10px;
+    margin: 8px 0;
+  }
+}
